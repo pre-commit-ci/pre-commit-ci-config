@@ -1,0 +1,6 @@
+-   id: check-pre-commit-ci-config
+    name: check pre-commit.ci config
+    description: validate pre-commit.ci configuration
+    entry: check-pre-commit-ci-config
+    language: python
+    files: ^\.pre-commit-config.yaml$
