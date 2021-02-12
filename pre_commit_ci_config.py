@@ -49,6 +49,7 @@ CI_DICT = cfgv.Map(
     'CI', None,
 
     cfgv.Optional('skip', cfgv.check_array(cfgv.check_string), []),
+    cfgv.Optional('submodules', cfgv.check_bool, False),
 )
 
 SCHEMA = cfgv.Map(
