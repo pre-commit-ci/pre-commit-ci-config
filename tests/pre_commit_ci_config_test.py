@@ -16,7 +16,7 @@ def _error_to_trace(e):
 
 def test_apply_defaults():
     ret = cfgv.apply_defaults({'repos': []}, SCHEMA)
-    assert ret == {'ci': {'skip': []}, 'repos': []}
+    assert ret == {'ci': {'skip': [], 'submodules': False}, 'repos': []}
 
 
 def test_skip_references_hook():
