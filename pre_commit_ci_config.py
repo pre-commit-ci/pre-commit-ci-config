@@ -48,6 +48,7 @@ CONFIG_REPO_DICT = cfgv.Map(
 CI_DICT = cfgv.Map(
     'CI', None,
 
+    cfgv.Optional('autofix_prs', cfgv.check_bool, True),
     cfgv.Optional('skip', cfgv.check_array(cfgv.check_string), []),
     cfgv.Optional('submodules', cfgv.check_bool, False),
 )
