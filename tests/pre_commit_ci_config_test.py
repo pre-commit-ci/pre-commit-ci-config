@@ -19,6 +19,7 @@ def test_apply_defaults():
     assert ret == {
         'ci': {
             'autofix_prs': True,
+            'autoupdate_commit_msg': '[pre-commit.ci] pre-commit autoupdate',
             'skip': [],
             'submodules': False,
         },

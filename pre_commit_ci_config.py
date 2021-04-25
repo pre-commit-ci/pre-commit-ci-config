@@ -49,6 +49,11 @@ CI_DICT = cfgv.Map(
     'CI', None,
 
     cfgv.Optional('autofix_prs', cfgv.check_bool, True),
+    cfgv.Optional(
+        'autoupdate_commit_msg',
+        cfgv.check_string,
+        '[pre-commit.ci] pre-commit autoupdate',
+    ),
     cfgv.Optional('skip', cfgv.check_array(cfgv.check_string), []),
     cfgv.Optional('submodules', cfgv.check_bool, False),
 )
