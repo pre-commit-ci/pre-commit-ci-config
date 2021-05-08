@@ -18,8 +18,13 @@ def test_apply_defaults():
     ret = cfgv.apply_defaults({'repos': []}, SCHEMA)
     assert ret == {
         'ci': {
+            'autofix_commit_msg': (
+                '[pre-commit.ci] auto fixes from pre-commit.com hooks\n\n'
+                'for more information, see https://pre-commit.ci\n'
+            ),
             'autofix_prs': True,
             'autoupdate_commit_msg': '[pre-commit.ci] pre-commit autoupdate',
+            'autoupdate_schedule': 'weekly',
             'skip': [],
             'submodules': False,
         },

@@ -50,14 +50,30 @@ CONFIG_REPO_DICT = cfgv.Map(
     cfgv.RequiredRecurse('hooks', cfgv.Array(HOOK_DICT)),
 )
 
+AUTOFIX_DEFAULT_COMMIT_MSG = '''\
+[pre-commit.ci] auto fixes from pre-commit.com hooks
+
+for more information, see https://pre-commit.ci
+'''
+
 CI_DICT = cfgv.Map(
     'CI', None,
 
+    cfgv.Optional(
+        'autofix_commit_msg',
+        cfgv.check_and(cfgv.check_string, _check_non_empty_string),
+        AUTOFIX_DEFAULT_COMMIT_MSG,
+    ),
     cfgv.Optional('autofix_prs', cfgv.check_bool, True),
     cfgv.Optional(
         'autoupdate_commit_msg',
         cfgv.check_and(cfgv.check_string, _check_non_empty_string),
         '[pre-commit.ci] pre-commit autoupdate',
+    ),
+    cfgv.Optional(
+        'autoupdate_schedule',
+        cfgv.check_one_of(('weekly', 'monthly', 'quarterly')),
+        'weekly',
     ),
     cfgv.Optional('skip', cfgv.check_array(cfgv.check_string), []),
     cfgv.Optional('submodules', cfgv.check_bool, False),
