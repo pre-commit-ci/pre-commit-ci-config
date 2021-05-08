@@ -27,6 +27,24 @@ def test_apply_defaults():
     }
 
 
+def test_autoupdate_commit_msg_cannot_be_empty():
+    cfg = {'ci': {'autoupdate_commit_msg': ''}, 'repos': []}
+    with pytest.raises(cfgv.ValidationError) as excinfo:
+        cfgv.validate(cfg, SCHEMA)
+    assert _error_to_trace(excinfo.value) == (
+        'At Config()',
+        'At key: ci',
+        'At CI()',
+        'At key: autoupdate_commit_msg',
+        'string cannot be empty',
+    )
+
+
+def test_autoupdate_commit_msg_ok_if_provided():
+    cfg = {'ci': {'autoupdate_commit_msg': 'autoupdate'}, 'repos': []}
+    cfgv.validate(cfg, SCHEMA)
+
+
 def test_skip_references_hook():
     cfg = {
         'ci': {'skip': ['identity']},
