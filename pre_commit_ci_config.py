@@ -12,6 +12,11 @@ Loader = getattr(yaml, 'CSafeLoader', yaml.SafeLoader)
 yaml_load = functools.partial(yaml.load, Loader=Loader)
 
 
+def _check_non_empty_string(val: str) -> None:
+    if not val:
+        raise cfgv.ValidationError('string cannot be empty')
+
+
 class ValidateSkip:
     def check(self, dct: dict[str, Any]) -> None:
         all_ids = {
@@ -51,7 +56,7 @@ CI_DICT = cfgv.Map(
     cfgv.Optional('autofix_prs', cfgv.check_bool, True),
     cfgv.Optional(
         'autoupdate_commit_msg',
-        cfgv.check_string,
+        cfgv.check_and(cfgv.check_string, _check_non_empty_string),
         '[pre-commit.ci] pre-commit autoupdate',
     ),
     cfgv.Optional('skip', cfgv.check_array(cfgv.check_string), []),
