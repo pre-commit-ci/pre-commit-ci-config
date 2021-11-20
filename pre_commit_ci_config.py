@@ -65,6 +65,7 @@ CI_DICT = cfgv.Map(
         AUTOFIX_DEFAULT_COMMIT_MSG,
     ),
     cfgv.Optional('autofix_prs', cfgv.check_bool, True),
+    cfgv.Optional('autoupdate_branch', cfgv.check_string, ''),
     cfgv.Optional(
         'autoupdate_commit_msg',
         cfgv.check_and(cfgv.check_string, _check_non_empty_string),

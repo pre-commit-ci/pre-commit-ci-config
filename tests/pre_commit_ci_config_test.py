@@ -23,6 +23,7 @@ def test_apply_defaults():
                 'for more information, see https://pre-commit.ci\n'
             ),
             'autofix_prs': True,
+            'autoupdate_branch': '',
             'autoupdate_commit_msg': '[pre-commit.ci] pre-commit autoupdate',
             'autoupdate_schedule': 'weekly',
             'skip': [],
