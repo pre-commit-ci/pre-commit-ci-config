@@ -17,6 +17,11 @@ def _check_non_empty_string(val: str) -> None:
         raise cfgv.ValidationError('string cannot be empty')
 
 
+def _check_autoupdate_branch(val: str) -> None:
+    if val == 'pre-commit-ci-update-config':
+        raise cfgv.ValidationError(f'autoupdate branch cannot be {val!r}')
+
+
 class ValidateSkip:
     def check(self, dct: dict[str, Any]) -> None:
         all_ids = {
@@ -65,7 +70,11 @@ CI_DICT = cfgv.Map(
         AUTOFIX_DEFAULT_COMMIT_MSG,
     ),
     cfgv.Optional('autofix_prs', cfgv.check_bool, True),
-    cfgv.Optional('autoupdate_branch', cfgv.check_string, ''),
+    cfgv.Optional(
+        'autoupdate_branch',
+        cfgv.check_and(cfgv.check_string, _check_autoupdate_branch),
+        '',
+    ),
     cfgv.Optional(
         'autoupdate_commit_msg',
         cfgv.check_and(cfgv.check_string, _check_non_empty_string),

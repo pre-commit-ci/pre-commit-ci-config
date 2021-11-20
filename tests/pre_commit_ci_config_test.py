@@ -33,6 +33,27 @@ def test_apply_defaults():
     }
 
 
+def test_autoupdate_branch_ok():
+    cfg = {'ci': {'autoupdate_branch': 'dev'}, 'repos': []}
+    cfgv.validate(cfg, SCHEMA)
+
+
+def test_autoupdate_branch_does_not_allow_our_branch_name():
+    cfg = {
+        'ci': {'autoupdate_branch': 'pre-commit-ci-update-config'},
+        'repos': [],
+    }
+    with pytest.raises(cfgv.ValidationError) as excinfo:
+        cfgv.validate(cfg, SCHEMA)
+    assert _error_to_trace(excinfo.value) == (
+        'At Config()',
+        'At key: ci',
+        'At CI()',
+        'At key: autoupdate_branch',
+        "autoupdate branch cannot be 'pre-commit-ci-update-config'",
+    )
+
+
 def test_autoupdate_commit_msg_cannot_be_empty():
     cfg = {'ci': {'autoupdate_commit_msg': ''}, 'repos': []}
     with pytest.raises(cfgv.ValidationError) as excinfo:
