@@ -9,7 +9,9 @@ validation for [pre-commit.ci](https://pre-commit.ci) configuration
 
 ## installation
 
-`pip install pre-commit-ci-config`
+```bash
+pip install pre-commit-ci-config
+```
 
 ## api
 
