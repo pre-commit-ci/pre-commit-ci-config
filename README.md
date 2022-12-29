@@ -1,5 +1,4 @@
-[![Build Status](https://dev.azure.com/asottile/asottile/_apis/build/status/pre-commit-ci.pre-commit-ci-config?branchName=main)](https://dev.azure.com/asottile/asottile/_build/latest?definitionId=68&branchName=main)
-[![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/asottile/asottile/68/main.svg)](https://dev.azure.com/asottile/asottile/_build/latest?definitionId=68&branchName=main)
+[![build status](https://github.com/pre-commit-ci/pre-commit-ci-config/actions/workflows/main.yml/badge.svg)](https://github.com/pre-commit-ci/pre-commit-ci-config/actions/workflows/main.yml)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/pre-commit-ci/pre-commit-ci-config/main.svg)](https://results.pre-commit.ci/latest/github/pre-commit-ci/pre-commit-ci-config/main)
 
 pre-commit-ci-config
