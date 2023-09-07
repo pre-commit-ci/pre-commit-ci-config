@@ -94,6 +94,24 @@ def test_skip_referencing_missing_hook():
     )
 
 
+def test_skip_references_hook_with_alias():
+    cfg = {
+        'ci': {'skip': ['alternate-identity']},
+        'repos': [
+            {
+                'repo': 'meta',
+                'hooks': [
+                    {
+                        'id': 'identity',
+                        'alias': 'alternate-identity',
+                    },
+                ],
+            },
+        ],
+    }
+    cfgv.validate(cfg, SCHEMA)
+
+
 def test_main_ok(tmpdir):
     cfg_s = '''\
 ci:
