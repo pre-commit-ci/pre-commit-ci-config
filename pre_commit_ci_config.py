@@ -29,6 +29,12 @@ class ValidateSkip:
             for repo in dct['repos']
             for hook in repo['hooks']
         }
+        all_aliases = {
+            hook.get('alias')
+            for repo in dct['repos']
+            for hook in repo['hooks']
+        }
+        all_ids.update(all_aliases)
         unexpected_skip = set(dct.get('ci', {}).get('skip', ())) - all_ids
         if unexpected_skip:
             with cfgv.validate_context('At key: ci'):
