@@ -25,9 +25,11 @@ def _check_autoupdate_branch(val: str) -> None:
 class ValidateSkip:
     def check(self, dct: dict[str, Any]) -> None:
         all_ids = {
-            hook['id']
+            hook_id
             for repo in dct['repos']
             for hook in repo['hooks']
+            for hook_id in (hook['id'], hook.get('alias'))
+            if hook_id is not None
         }
         unexpected_skip = set(dct.get('ci', {}).get('skip', ())) - all_ids
         if unexpected_skip:
