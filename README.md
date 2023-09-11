@@ -47,7 +47,7 @@ Sample `.pre-commit-config.yaml`:
 
 ```yaml
 -   repo: https://github.com/pre-commit-ci/pre-commit-ci-config
-    rev: v1.5.1
+    rev: v1.6.0
     hooks:
     -   id: check-pre-commit-ci-config
 ```
