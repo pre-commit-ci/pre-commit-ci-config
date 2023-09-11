@@ -48,6 +48,7 @@ HOOK_DICT = cfgv.Map(
     'Hook', 'id',
 
     cfgv.Required('id', cfgv.check_string),
+    cfgv.OptionalNoDefault('alias', cfgv.check_string),
 )
 
 CONFIG_REPO_DICT = cfgv.Map(
